@@ -109,3 +109,7 @@ docs/
 ## Licence
 
 MIT, see [LICENSE](LICENSE). `appuifwmodule.rsc` is Python for S60's, Apache 2.0: see [THIRD-PARTY.md](THIRD-PARTY.md).
+
+## Part of the RetroArchive ecosystem
+
+Extracted from [RetroTele](https://github.com/manojanasuri16/RetroTele), [RetroTorch](https://github.com/manojanasuri16/RetroTorch), [RetroSend](https://github.com/manojanasuri16/RetroSend). All apps, guides and open-source repos are listed on [RetroArchive](https://manojanasuri16.github.io/RetroArchive/) (see the [Open source page](https://manojanasuri16.github.io/RetroArchive/opensource/)); the build toolchain is [symbian-s60v3-toolchain](https://github.com/manojanasuri16/symbian-s60v3-toolchain).
