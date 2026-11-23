@@ -1,0 +1,17 @@
+// myapp_rscfix.exe: run once by the installer; puts appuifwmodule.rsc on the app's drive
+// (see ..\rscfix.cpp). The app name in the log/shipped-copy path comes from this file's
+// NAME: rename TARGET to <yourapp>_rscfix.exe, and give it its OWN unique UID (a second
+// binary with the same UID/SID makes the phone say only "Unable to install").
+TARGET          myapp_rscfix.exe
+TARGETTYPE      exe
+UID             0 0xE0000001
+CAPABILITY      NONE
+VENDORID        0
+EPOCSTACKSIZE   0x5000
+
+SOURCEPATH      ..
+SOURCE          rscfix.cpp
+
+SYSTEMINCLUDE   \epoc32\include
+SYSTEMINCLUDE   \epoc32\include\libc
+LIBRARY         euser.lib efsrv.lib

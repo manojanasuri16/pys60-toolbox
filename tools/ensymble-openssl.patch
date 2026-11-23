@@ -1,0 +1,29 @@
+diff --git a/ensymble/utils/cryptutil.py b/ensymble/utils/cryptutil.py
+index 73cad46..b156849 100644
+--- a/ensymble/utils/cryptutil.py
++++ b/ensymble/utils/cryptutil.py
+@@ -359,7 +359,10 @@ def runopenssl(command, datain = ""):
+         findopenssl()
+ 
+     # Construct a command line for subprocess.Popen()
+-    cmdline = (opensslcommand, command)
++    # Patched for RetroSend: split the arguments (the original passed them
++    # as one string, which fails on Linux with current OpenSSL).
++    import shlex
++    cmdline = [opensslcommand] + shlex.split(command)
+ 
+     if openssldebug:
+         # Print command line.
+@@ -368,10 +371,8 @@ def runopenssl(command, datain = ""):
+     # Run command.
+     p = subprocess.Popen(cmdline, stdin=subprocess.PIPE,
+             stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
+-    (pipein, pipeout, pipeerr) = (p.stdin, p.stdout, p.stderr)
+-    pipein.write(datain)
+-    dataout = pipeout.read()
+-    errout = pipeerr.read()
++    # Patched: communicate() closes stdin so OpenSSL does not wait forever.
++    (dataout, errout) = p.communicate(datain)
+ 
+     if openssldebug:
+         # Print standard error output.
